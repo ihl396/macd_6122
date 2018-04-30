@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="data">daily_data.txt</file>
+    </qresource>
+</RCC>
