@@ -8,3 +8,6 @@ RESOURCES += \
 
 INSTALLS += target
 
+HEADERS += \
+    common.h
+
