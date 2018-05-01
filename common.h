@@ -5,13 +5,14 @@
 #include <QVector>
 #include <QtCore/QDateTime>
 
+
 QT_CHARTS_USE_NAMESPACE
 
 int SUBSET_SIZE_9 = 9;
 int SUBSET_SIZE_12 = 12;
 int SUBSET_SIZE_26 = 26;
 
-void calculate_MACD(QLineSeries *movingAvgData, QVector<double> rawData, int subsetSize, QDateTime momentInTime) {
+void calculate_MAvg(QLineSeries *movingAvgData, QVector<double> rawData, int subsetSize, QDateTime momentInTime) {
     // if number of data points in rawData is less than subset size, set value in MACD series to 0
     if (rawData.size() < subsetSize) {
         movingAvgData->append(momentInTime.toMSecsSinceEpoch(), 0.0);
@@ -25,5 +26,7 @@ void calculate_MACD(QLineSeries *movingAvgData, QVector<double> rawData, int sub
         movingAvgData->append(momentInTime.toMSecsSinceEpoch(), avg);
     }
 }
+
+
 
 #endif // COMMON_H

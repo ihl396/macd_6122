@@ -1,7 +1,8 @@
 QT += charts
 
 SOURCES += \
-    main.cpp
+    main.cpp \
+    macdchart.cpp
 
 RESOURCES += \
     stockdata.qrc
@@ -9,5 +10,6 @@ RESOURCES += \
 INSTALLS += target
 
 HEADERS += \
-    common.h
+    common.h \
+    macdchart.h
 
