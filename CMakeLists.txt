@@ -2,21 +2,23 @@ cmake_minimum_required(VERSION 3.9)
 project(macd_6122)
 
 set(CMAKE_AUTOMOC ON)
-
-set(QT_BIN "${PROJECT_SOURCE_DIR}/QtBinDebug")
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-add_custom_target(qtMakeFile COMMAND make -C ${QT_BIN})
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 #QT setup
-set(CMAKE_PREFIX_PATH /usr/local/opt/qt5)
 
 #Base QT directory
-#set(QT_PATH "/usr/local/opt/qt5")
+set(CMAKE_PREFIX_PATH /usr/local/opt/qt5)
 
 #Build output path of your QT Creator project
-set(QT_BIN "${PROJECT_SOURCE_DIR}/QtBinDebug")
+if (WIN32)
+    set(QT_BIN "${PROJECT_SOURCE_DIR}/QtBinDebug-Win64")
+endif (WIN32)
+if (UNIX)
+    set(QT_BIN "${PROJECT_SOURCE_DIR}/QtBinDebug-MacOS")
+endif (UNIX)
+add_custom_target(qtMakeFile COMMAND make -C ${QT_BIN})
 
 #Qt5 paths
 #Qt5 library path
@@ -37,11 +39,9 @@ foreach(QT_LIBRARIES_REQUIRED ${QT_LIBRARIES_REQUIRED})
     find_package( ${QT_LIBRARIES_REQUIRED} REQUIRED )
 endforeach()
 
-add_custom_target(qtMakefile COMMAND make -C ${QT_BIN})
-
 include_directories(${QT_BIN})
 
-set(SOURCE_FILES main.cpp)
+set(SOURCE_FILES main.cpp common.h macdchart.h macdchart.cpp)
 
 add_executable(macd_6122 ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME} ${QT_LIBRARIES})
